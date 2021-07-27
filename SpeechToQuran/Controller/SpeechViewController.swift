@@ -24,7 +24,7 @@ class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
         
     // MARK: Variables
-    let DEFAULT_LABEL_TEXT: String = "Press 'Start Recording', Then, Say something of one ayat in Al-Qur'an, I'm listening!"
+    let defaultLabelText: String = "Press 'Start Recording', Then, Say something of one ayat in Al-Qur'an, I'm listening!"
     var searchResultAttempts: [SearchResultAttempt] = []
     
     let speechRecognizer        = SFSpeechRecognizer(locale: Locale(identifier: "ar_SA"))
@@ -33,6 +33,20 @@ class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate
     var recognitionTask         : SFSpeechRecognitionTask?
     let audioEngine             = AVAudioEngine()
     var arrayAttempts: [Attempt]!
+    
+    // MARK: View Life Cycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setupSpeech()
+        setupFetchedResultsController()
+        handleNoInternet()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        fetchedResultsController = nil
+    }
+    
         
     // MARK: Action Methods
     @IBAction func historyButtonPressed(_ sender: UIButton) {
@@ -40,7 +54,8 @@ class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate
     }
     
     @IBAction func btnStartSpeechToText(_ sender: UIButton) {
-
+        if !Connectivity.isConnectedToInternet { handleNoInternet(); return }
+        
         if audioEngine.isRunning {
             // Call to end recording
             setEnableUI(enabled: false)
@@ -49,7 +64,7 @@ class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate
             btnStart.setTitle("Start Recording", for: .normal)
             
             if let labelText = self.lblText.text {
-                if labelText == DEFAULT_LABEL_TEXT {
+                if labelText == defaultLabelText {
                     setEnableUI(enabled: true)
                     return
                 }
@@ -90,7 +105,7 @@ class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate
     func presentResultView(resultArray: [AyatSearchResult]) {
         let resultTableVC = self.storyboard!.instantiateViewController(withIdentifier: "ResultTableViewController") as! ResultTableViewController
         resultTableVC.resultArray = resultArray
-        lblText.text = DEFAULT_LABEL_TEXT
+        lblText.text = defaultLabelText
         present(resultTableVC, animated: true, completion: nil)
     }
     
@@ -100,7 +115,7 @@ class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate
             let sortedArray = results.sorted { (lhs, rhs) in return lhs.timestamp > rhs.timestamp }
             historyTableVC.searchResultAttempts = sortedArray
             historyTableVC.fetchedResultsController = self.fetchedResultsController
-            self.lblText.text = self.DEFAULT_LABEL_TEXT
+            self.lblText.text = self.defaultLabelText
             self.present(historyTableVC, animated: true, completion: nil)
         }
     }
@@ -108,6 +123,13 @@ class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate
 
     
     // MARK: Custom Methods
+    
+    func handleNoInternet() {
+        if !Connectivity.isConnectedToInternet {
+            showAlert("No Internet Connection.", message: "Please Activate your Internet Connection.")
+            setEnableUI(enabled: false)
+        }
+    }
     
     func setEnableUI(enabled: Bool) {
         enabled ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
@@ -217,23 +239,9 @@ class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate
             print("audioEngine couldn't start because of an error.")
         }
 
-        self.lblText.text = DEFAULT_LABEL_TEXT
+        self.lblText.text = defaultLabelText
     }
-
-
-    
-    // MARK: View Life Cycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setupSpeech()
-        setupFetchedResultsController()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        fetchedResultsController = nil
-    }
-    
+        
     private func setupFetchedResultsController() {
         let fetchRequest:NSFetchRequest<Attempt> = Attempt.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
@@ -305,7 +313,7 @@ extension SpeechViewController: SFSpeechRecognizerDelegate {
 }
 
 
-extension UIViewController {
+extension SpeechViewController {
     func showAlert(_ title: String,
                    message: String,
                    canCancel: Bool = false,
