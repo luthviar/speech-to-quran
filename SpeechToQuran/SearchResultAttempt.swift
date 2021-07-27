@@ -9,6 +9,6 @@ import Foundation
 
 struct SearchResultAttempt {
     let speechText: String
-    let results: [AyatSearchResult]
+    let results: [AyatSearchResult]?
     let timestamp: Date
 }

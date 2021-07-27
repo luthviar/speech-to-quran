@@ -9,8 +9,7 @@ import UIKit
 
 class ResultTableViewController: UITableViewController {
 
-    var resultArray: [AyatSearchResult]!
-    
+    var resultArray: [AyatSearchResult]!    
     
     override func viewDidLoad() {
         super.viewDidLoad()

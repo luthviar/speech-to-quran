@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Nw-I9-bbZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HVy-dt-Jfh">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -52,6 +52,22 @@
             </objects>
             <point key="canvasLocation" x="52" y="-765"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BhA-mG-9vJ">
+            <objects>
+                <navigationController id="HVy-dt-Jfh" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6a8-G2-egu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8Nw-I9-bbZ" kind="relationship" relationship="rootViewController" id="Y7w-9u-MOX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fKH-8X-yw6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-819" y="52"/>
+        </scene>
         <!--Speech View Controller-->
         <scene sceneID="aOE-ok-f3l">
             <objects>
@@ -72,13 +88,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press 'Start Recording', Then, Say something of one ayat in Al-Qur'an, I'm listening!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWh-vU-tdt">
-                                <rect key="frame" x="10" y="54" width="394" height="670"/>
+                                <rect key="frame" x="10" y="98" width="394" height="626"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8g-Wu-boS">
-                                <rect key="frame" x="354" y="44" width="50" height="50"/>
+                                <rect key="frame" x="354" y="88" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="E6X-vP-1vo"/>
                                     <constraint firstAttribute="height" constant="50" id="Rcr-Eh-qkz"/>
@@ -111,6 +127,7 @@
                             <constraint firstItem="HmN-M0-uuV" firstAttribute="centerX" secondItem="B4h-OP-yZu" secondAttribute="centerX" id="vbq-2i-1R1"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="6o6-Kc-RtI"/>
                     <connections>
                         <outlet property="activityIndicator" destination="HmN-M0-uuV" id="47d-qh-iXf"/>
                         <outlet property="btnStart" destination="B4h-OP-yZu" id="iZ9-gQ-2N4"/>

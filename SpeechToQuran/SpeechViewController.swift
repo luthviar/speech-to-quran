@@ -8,23 +8,22 @@
 import UIKit
 import Speech
 import AVKit
+import CoreData
 
-class SpeechViewController: UIViewController {
+class SpeechViewController: UIViewController, NSFetchedResultsControllerDelegate {
 
           
-    // MARK:- Outlets
+    // MARK: Injected Properties
+    var dataController: DataController!
+    var fetchedResultsController: NSFetchedResultsController<Attempt>!
     
-
+    // MARK:- Outlets
     @IBOutlet weak var btnStart             : UIButton!
     @IBOutlet weak var lblText              : UILabel!
     @IBOutlet weak var historyButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-
-    
+        
     // MARK: Variables
-    
-
     let DEFAULT_LABEL_TEXT: String = "Press 'Start Recording', Then, Say something of one ayat in Al-Qur'an, I'm listening!"
     var searchResultAttempts: [SearchResultAttempt] = []
     
@@ -33,11 +32,9 @@ class SpeechViewController: UIViewController {
     var recognitionRequest      : SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask         : SFSpeechRecognitionTask?
     let audioEngine             = AVAudioEngine()
-    
-
-    
+    var arrayAttempts: [Attempt]!
+        
     // MARK: Action Methods
-    
     @IBAction func historyButtonPressed(_ sender: UIButton) {
         presentHistoryView(searchResultAttempts: searchResultAttempts)
     }
@@ -71,7 +68,9 @@ class SpeechViewController: UIViewController {
                         }
                         
                         let newAttempt = SearchResultAttempt(speechText: labelText, results: array, timestamp: Date())
-                        self.searchResultAttempts.append(newAttempt)
+                        //self.searchResultAttempts.append(newAttempt)
+                        //self.addAttempt(speechText: labelText, array: array)
+                        self.addAttempt(searchResultAttempt: newAttempt)
                         self.presentResultView(resultArray: array)
                     case .notConnected:
                         self.showAlert("There is no connection to internet, please try again.", message: "")
@@ -96,11 +95,14 @@ class SpeechViewController: UIViewController {
     }
     
     func presentHistoryView(searchResultAttempts: [SearchResultAttempt]) {
-        let historyTableVC = self.storyboard!.instantiateViewController(withIdentifier: "HistoryTableViewController") as! HistoryTableViewController
-        let sortedArray = searchResultAttempts.sorted { (lhs, rhs) in return lhs.timestamp > rhs.timestamp }
-        historyTableVC.searchResultAttempts = sortedArray
-        lblText.text = DEFAULT_LABEL_TEXT
-        present(historyTableVC, animated: true, completion: nil)
+        loadAttempts { results in
+            let historyTableVC = self.storyboard!.instantiateViewController(withIdentifier: "HistoryTableViewController") as! HistoryTableViewController
+            let sortedArray = results.sorted { (lhs, rhs) in return lhs.timestamp > rhs.timestamp }
+            historyTableVC.searchResultAttempts = sortedArray
+            historyTableVC.fetchedResultsController = self.fetchedResultsController
+            self.lblText.text = self.DEFAULT_LABEL_TEXT
+            self.present(historyTableVC, animated: true, completion: nil)
+        }
     }
 
 
@@ -221,11 +223,73 @@ class SpeechViewController: UIViewController {
 
     
     // MARK: View Life Cycle Methods
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSpeech()
+        setupFetchedResultsController()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        fetchedResultsController = nil
+    }
+    
+    private func setupFetchedResultsController() {
+        let fetchRequest:NSFetchRequest<Attempt> = Attempt.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "attempt")
+        fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: Model Functions
+    
+    private func loadAttempts(completionHandler: @escaping ([SearchResultAttempt]) -> Void) {
+        setupFetchedResultsController()
+        searchResultAttempts = []
+        if let attempts = fetchedResultsController.fetchedObjects {
+            for item in attempts {
+                let new = SearchResultAttempt(speechText: item.speechText!, results: nil, timestamp: item.creationDate!)
+                searchResultAttempts.append(new)
+            }
+        }
+        completionHandler(searchResultAttempts)
+    }
+    
+    /// Adds a new attempt to the end of the array
+    func addAttempt(searchResultAttempt: SearchResultAttempt) {
+        let attempt = Attempt(context: dataController.viewContext)
+        attempt.speechText = searchResultAttempt.speechText
+        attempt.creationDate = Date()
+        if let results = searchResultAttempt.results {
+            for item in results {
+                addResult(ayatSearchResult: item, attempt: attempt)
+            }
+        }
+        if searchResultAttempts.count < 1 {
+            searchResultAttempts.append(searchResultAttempt)
+        }
+        try? dataController.viewContext.save()
+    }
+    
+    /// Adds a new result to the end of the array
+    func addResult(ayatSearchResult: AyatSearchResult, attempt: Attempt) {
+        let result = Result(context: dataController.viewContext)
+        result.index = Int64(ayatSearchResult.index)
+        result.text = ayatSearchResult.text
+        result.suratName = ayatSearchResult.suratName
+        result.suratId = Int64(ayatSearchResult.suratId)
+        result.ayatId = Int64(ayatSearchResult.ayatId)
+        result.ayatIdGlobal = Int64(ayatSearchResult.ayatIdGlobal)
+        result.creationDate = Date()
+        result.attempt = attempt
+        try? dataController.viewContext.save()
     }
 }
 

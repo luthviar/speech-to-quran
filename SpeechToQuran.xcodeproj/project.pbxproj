@@ -12,6 +12,8 @@
 		2F37184126AFEC78006DCE58 /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37184026AFEC78006DCE58 /* ResultTableViewController.swift */; };
 		2F37184326AFF95C006DCE58 /* SearchResultAttempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37184226AFF95C006DCE58 /* SearchResultAttempt.swift */; };
 		2F37184526B007E0006DCE58 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37184426B007E0006DCE58 /* HistoryTableViewController.swift */; };
+		2F37184826B01C5F006DCE58 /* SpeechToQuran.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F37184626B01C5F006DCE58 /* SpeechToQuran.xcdatamodeld */; };
+		2F37184A26B01DAD006DCE58 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37184926B01DAD006DCE58 /* DataController.swift */; };
 		2F56292026AF87DF004025CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F56291F26AF87DF004025CA /* AppDelegate.swift */; };
 		2F56292226AF87DF004025CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F56292126AF87DF004025CA /* SceneDelegate.swift */; };
 		2F56292426AF87DF004025CA /* SpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F56292326AF87DF004025CA /* SpeechViewController.swift */; };
@@ -28,6 +30,8 @@
 		2F37184026AFEC78006DCE58 /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
 		2F37184226AFF95C006DCE58 /* SearchResultAttempt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAttempt.swift; sourceTree = "<group>"; };
 		2F37184426B007E0006DCE58 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		2F37184726B01C5F006DCE58 /* SpeechToQuran.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpeechToQuran.xcdatamodel; sourceTree = "<group>"; };
+		2F37184926B01DAD006DCE58 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		2F56291C26AF87DF004025CA /* SpeechToQuran.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeechToQuran.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F56291F26AF87DF004025CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F56292126AF87DF004025CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				2F37184226AFF95C006DCE58 /* SearchResultAttempt.swift */,
 				2F37184026AFEC78006DCE58 /* ResultTableViewController.swift */,
 				2F37184426B007E0006DCE58 /* HistoryTableViewController.swift */,
+				2F37184626B01C5F006DCE58 /* SpeechToQuran.xcdatamodeld */,
+				2F37184926B01DAD006DCE58 /* DataController.swift */,
 			);
 			path = SpeechToQuran;
 			sourceTree = "<group>";
@@ -225,6 +231,8 @@
 				2F37183F26AFDF26006DCE58 /* AyatSearchResult.swift in Sources */,
 				2F37184126AFEC78006DCE58 /* ResultTableViewController.swift in Sources */,
 				2F56292026AF87DF004025CA /* AppDelegate.swift in Sources */,
+				2F37184A26B01DAD006DCE58 /* DataController.swift in Sources */,
+				2F37184826B01C5F006DCE58 /* SpeechToQuran.xcdatamodeld in Sources */,
 				2F37184326AFF95C006DCE58 /* SearchResultAttempt.swift in Sources */,
 				2F37183D26AFDA1D006DCE58 /* AppClient.swift in Sources */,
 				2F56292226AF87DF004025CA /* SceneDelegate.swift in Sources */,
@@ -431,6 +439,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2F37184626B01C5F006DCE58 /* SpeechToQuran.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2F37184726B01C5F006DCE58 /* SpeechToQuran.xcdatamodel */,
+			);
+			currentVersion = 2F37184726B01C5F006DCE58 /* SpeechToQuran.xcdatamodel */;
+			path = SpeechToQuran.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2F56291426AF87DF004025CA /* Project object */;
 }
