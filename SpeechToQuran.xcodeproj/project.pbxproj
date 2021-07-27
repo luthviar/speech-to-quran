@@ -64,6 +64,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2F37184B26B03BC7006DCE58 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2F56292326AF87DF004025CA /* SpeechViewController.swift */,
+				2F37184026AFEC78006DCE58 /* ResultTableViewController.swift */,
+				2F37184426B007E0006DCE58 /* HistoryTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2F37184C26B03BD3006DCE58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2F56292526AF87DF004025CA /* Main.storyboard */,
+				2F56292A26AF87E2004025CA /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2F37184D26B03BDF006DCE58 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2F37183C26AFDA1D006DCE58 /* AppClient.swift */,
+				2F37183E26AFDF26006DCE58 /* AyatSearchResult.swift */,
+				2F37184226AFF95C006DCE58 /* SearchResultAttempt.swift */,
+				2F37184626B01C5F006DCE58 /* SpeechToQuran.xcdatamodeld */,
+				2F37184926B01DAD006DCE58 /* DataController.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2F56291326AF87DF004025CA = {
 			isa = PBXGroup;
 			children = (
@@ -87,18 +118,11 @@
 			children = (
 				2F56291F26AF87DF004025CA /* AppDelegate.swift */,
 				2F56292126AF87DF004025CA /* SceneDelegate.swift */,
-				2F56292326AF87DF004025CA /* SpeechViewController.swift */,
-				2F56292526AF87DF004025CA /* Main.storyboard */,
+				2F37184D26B03BDF006DCE58 /* Model */,
+				2F37184C26B03BD3006DCE58 /* View */,
+				2F37184B26B03BC7006DCE58 /* Controller */,
 				2F56292826AF87E2004025CA /* Assets.xcassets */,
-				2F56292A26AF87E2004025CA /* LaunchScreen.storyboard */,
 				2F56292D26AF87E2004025CA /* Info.plist */,
-				2F37183C26AFDA1D006DCE58 /* AppClient.swift */,
-				2F37183E26AFDF26006DCE58 /* AyatSearchResult.swift */,
-				2F37184226AFF95C006DCE58 /* SearchResultAttempt.swift */,
-				2F37184026AFEC78006DCE58 /* ResultTableViewController.swift */,
-				2F37184426B007E0006DCE58 /* HistoryTableViewController.swift */,
-				2F37184626B01C5F006DCE58 /* SpeechToQuran.xcdatamodeld */,
-				2F37184926B01DAD006DCE58 /* DataController.swift */,
 			);
 			path = SpeechToQuran;
 			sourceTree = "<group>";
