@@ -10,9 +10,11 @@
 		2F37183D26AFDA1D006DCE58 /* AppClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37183C26AFDA1D006DCE58 /* AppClient.swift */; };
 		2F37183F26AFDF26006DCE58 /* AyatSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37183E26AFDF26006DCE58 /* AyatSearchResult.swift */; };
 		2F37184126AFEC78006DCE58 /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37184026AFEC78006DCE58 /* ResultTableViewController.swift */; };
+		2F37184326AFF95C006DCE58 /* SearchResultAttempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37184226AFF95C006DCE58 /* SearchResultAttempt.swift */; };
+		2F37184526B007E0006DCE58 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F37184426B007E0006DCE58 /* HistoryTableViewController.swift */; };
 		2F56292026AF87DF004025CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F56291F26AF87DF004025CA /* AppDelegate.swift */; };
 		2F56292226AF87DF004025CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F56292126AF87DF004025CA /* SceneDelegate.swift */; };
-		2F56292426AF87DF004025CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F56292326AF87DF004025CA /* ViewController.swift */; };
+		2F56292426AF87DF004025CA /* SpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F56292326AF87DF004025CA /* SpeechViewController.swift */; };
 		2F56292726AF87DF004025CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F56292526AF87DF004025CA /* Main.storyboard */; };
 		2F56292926AF87E2004025CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F56292826AF87E2004025CA /* Assets.xcassets */; };
 		2F56292C26AF87E2004025CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F56292A26AF87E2004025CA /* LaunchScreen.storyboard */; };
@@ -24,10 +26,12 @@
 		2F37183C26AFDA1D006DCE58 /* AppClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClient.swift; sourceTree = "<group>"; };
 		2F37183E26AFDF26006DCE58 /* AyatSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyatSearchResult.swift; sourceTree = "<group>"; };
 		2F37184026AFEC78006DCE58 /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
+		2F37184226AFF95C006DCE58 /* SearchResultAttempt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAttempt.swift; sourceTree = "<group>"; };
+		2F37184426B007E0006DCE58 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		2F56291C26AF87DF004025CA /* SpeechToQuran.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeechToQuran.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F56291F26AF87DF004025CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F56292126AF87DF004025CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2F56292326AF87DF004025CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2F56292326AF87DF004025CA /* SpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewController.swift; sourceTree = "<group>"; };
 		2F56292626AF87DF004025CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F56292826AF87E2004025CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F56292B26AF87E2004025CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,14 +83,16 @@
 			children = (
 				2F56291F26AF87DF004025CA /* AppDelegate.swift */,
 				2F56292126AF87DF004025CA /* SceneDelegate.swift */,
-				2F56292326AF87DF004025CA /* ViewController.swift */,
+				2F56292326AF87DF004025CA /* SpeechViewController.swift */,
 				2F56292526AF87DF004025CA /* Main.storyboard */,
 				2F56292826AF87E2004025CA /* Assets.xcassets */,
 				2F56292A26AF87E2004025CA /* LaunchScreen.storyboard */,
 				2F56292D26AF87E2004025CA /* Info.plist */,
 				2F37183C26AFDA1D006DCE58 /* AppClient.swift */,
 				2F37183E26AFDF26006DCE58 /* AyatSearchResult.swift */,
+				2F37184226AFF95C006DCE58 /* SearchResultAttempt.swift */,
 				2F37184026AFEC78006DCE58 /* ResultTableViewController.swift */,
+				2F37184426B007E0006DCE58 /* HistoryTableViewController.swift */,
 			);
 			path = SpeechToQuran;
 			sourceTree = "<group>";
@@ -214,10 +220,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F56292426AF87DF004025CA /* ViewController.swift in Sources */,
+				2F37184526B007E0006DCE58 /* HistoryTableViewController.swift in Sources */,
+				2F56292426AF87DF004025CA /* SpeechViewController.swift in Sources */,
 				2F37183F26AFDF26006DCE58 /* AyatSearchResult.swift in Sources */,
 				2F37184126AFEC78006DCE58 /* ResultTableViewController.swift in Sources */,
 				2F56292026AF87DF004025CA /* AppDelegate.swift in Sources */,
+				2F37184326AFF95C006DCE58 /* SearchResultAttempt.swift in Sources */,
 				2F37183D26AFDA1D006DCE58 /* AppClient.swift in Sources */,
 				2F56292226AF87DF004025CA /* SceneDelegate.swift in Sources */,
 			);

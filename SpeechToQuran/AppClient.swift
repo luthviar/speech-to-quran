@@ -41,6 +41,10 @@ class AppClient {
                     let result = AyatSearchResult(index: indexResult, text: ayatText, suratName: suratName, suratId: suratId, ayatId: ayatId, ayatIdGlobal: ayatIdGlobal)
                     resultArray.append(result)
                 }
+                if resultArray.count > 0 {
+                    let sortedArray = resultArray.sorted { (lhs, rhs) in return lhs.index < rhs.index }
+                    resultArray = sortedArray
+                }
                 completionHandler(.connected, resultArray, nil)
             } else {
                 completionHandler(.connected, [], nil)
@@ -53,25 +57,6 @@ class AppClient {
         return urlAyat
     }
     
-//    AF.request(url).responseJSON { (response) in
-//        let jsonResponse = try! JSONSerialization.jsonObject(with: response.data!, options: .allowFragments) as? [String: Any]
-//        let photos = jsonResponse!["photos"] as! [String: Any]
-//        let totalPages = photos["pages"] as! Int
-//        let photosPerPages = photos["photo"] as! [[String:Any]]
-//        var photosURL: [String] = []
-//
-//        for photo in photosPerPages {
-//            let farm: Int = photo["farm"] as! Int
-//            let server = photo["server"]!
-//            let id = photo["id"]!
-//            let secret: String = photo["secret"] as! String
-//            let photoURL = "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret).jpg"
-//            photosURL.append(photoURL)
-//        }
-//
-//        completionHandler(.connected, photosURL, totalPages)
-//
-//    }
 }
 
 class Connectivity {
