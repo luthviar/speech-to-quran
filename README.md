@@ -18,4 +18,6 @@ Can Run in Simulator too!
 
 # _This is the demo_
 
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/mINPxvPGgFs/0.jpg)](http://www.youtube.com/watch?v=mINPxvPGgFs "Video Title")
+
 ![Attatched Screenshot](/images/gif.gif)
